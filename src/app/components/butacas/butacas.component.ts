@@ -49,30 +49,12 @@ export class ButacasComponent implements OnInit {
   };
 
   reservarAsiento = (fila, columna) => {
-    let foundFila = false;
-    let foundColumna = false;
-    for (let f = 1; f < fila; f++) {
-      foundFila = false;
-      for (let c = 1; c <= columna; f++) {
-        if (this.butacasCompradas[f][c - 1]) foundFila = true;
-        if (
-          this.butacasCompradas[f][c - 1] ||
-          (this.butacasCompradas[f][c - 1] && c != columna)
-        )
-          foundColumna = true;
-      }
-      if (foundColumna && foundFila) {
-        alert("Seleccione un asciento contiguo");
-        break;
-      }
-    }
-    if (!(foundColumna && foundFila)) {
       this.salaButacas.butacas[fila - 1][columna] = !this.salaButacas.butacas[
         fila - 1
       ][columna];
 
       this.butacasCompradas[fila - 1][columna] = true;
-    }
+    
   };
 
   ngOnInit() {
