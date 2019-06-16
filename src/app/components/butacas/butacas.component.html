@@ -1,0 +1,57 @@
+<div>
+  <div class="faq">
+    <div class="general_agileits_genres">
+      <h4 class="title-component">BUTACAS</h4>
+    </div>
+    <div class="container">
+      <div *ngIf="validarPasillo()">
+        <div *ngFor="let f of filas()">
+          <div class="row">
+            <div *ngFor="let c of columnas(2)">
+              <img
+                class="butaca"
+                *ngIf="!validateButaca(f, c)"
+                (click)="reservarAsiento(f, c)"
+                src="../../../assets/images/asiento.png"
+                alt="asiento"
+                height="42"
+                width="42"
+              />
+              <img
+                *ngIf="validateButaca(f, c)"
+                src="../../../assets/images/asientoComprado.png"
+                alt="asiento"
+                height="42"
+                width="42"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!validarPasillo()">
+        <div *ngFor="let f of filas()">
+          <div class="row">
+            <div *ngFor="let c of columnas(1)">
+              <img
+                class="butaca"
+                *ngIf="!validateButaca(f, c)"
+                (click)="reservarAsiento(f, c)"
+                src="../../../assets/images/asiento.png"
+                alt="asiento"
+                height="42"
+                width="42"
+              />
+              <img
+                src="../../../assets/images/asientoComprado.png"
+                alt="asiento"
+                height="42"
+                width="42"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

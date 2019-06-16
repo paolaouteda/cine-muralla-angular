@@ -1,14 +1,74 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>CineMuralla</title>
-  <base href="/">
+  <head>
+    <meta charset="utf-8" />
+    <title>CineMuralla</title>
+    <base href="/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="w3layouts_logo">
+          <a href="index.html"
+            ><img src="./assets/images/1.png" alt=" " height="100" width="100"
+          /></a>
+        </div>
+        <div class="w3_search">
+          <form action="#" method="post">
+            <input type="text" name="Search" placeholder="Buscar" required="" />
+            <input type="submit" value="Ir" />
+          </form>
+        </div>
+        <div class="w3l_sign_in_register">
+          <ul>
+            <li>
+              <i class="fa fa-phone" aria-hidden="true"></i> (+58) 414910699
+            </li>
+            <li>
+              <a href="#" data-toggle="modal" data-target="#myModal"
+                >Iniciar Sesión</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="movies_nav">
+      <div class="container">
+        <nav class="navbar navbar-default">
+          <div
+            class="collapse navbar-collapse navbar-right collapse-display"
+            id="bs-example-navbar-collapse-1"
+          >
+            <nav>
+              <ul class="nav navbar-nav nav-row">
+                <li class="active"><a href="index.html">Inicio</a></li>
+                <li><a href="/cines"> Cines</a></li>
+                <li><a href="/comida">Comida</a></li>
+                <li><a href="/administrador">Administrador</a></li>
+              </ul>
+            </nav>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <app-root></app-root>
+  </body>
 </html>
