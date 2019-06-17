@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./administrador.component.css']
 })
 export class AdministradorComponent implements OnInit {
+  // Permitir Collapse
+  public sedeIsCollapsed = true;
+  public salaIsCollapsed = true;
+  public mapaIsCollapsed = true;
+  public funcionesIsCollapsed = true;
 
   constructor() { }
 

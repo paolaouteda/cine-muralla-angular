@@ -1,3 +1,226 @@
-<p>
-  administrador works!
-</p>
+             <!-- TODO: Agregar cualquier validacion xdxd -->
+             <button type="button" class="btn btn-outline-primary" (click)="sedeIsCollapsed = !sedeIsCollapsed"
+               [attr.aria-expanded]="!sedeIsCollapsed" aria-controls="collapse1">
+               Crear Sede
+             </button>
+             <div id="collapse1" [ngbCollapse]="sedeIsCollapsed">
+               <div class="card">
+                 <div class="card-body">
+                   <!-- sedes form -->
+                   <form action="/formAction.ts">
+                     <div class="form-group">
+                       <label for="edo">Estado:</label>
+                       <input type="text" class="form-control" id="edo">
+                     </div>
+                     <div class="form-group">
+                       <label for="sede">Nombre:</label>
+                       <input type="text" class="form-control" id="sede">
+                     </div>
+                     <div class="form-group">
+                       <label for="ubi">Ubicacion:</label>
+                       <input type="text" class="form-control" id="ubi">
+                     </div>
+                     <div class="form-group">
+                       <label for="hora">Hora inicio y fin: </label><br>
+                       <input type="time" class="form-control" class="hora"> <input type="time" class="form-control"
+                         class="hora">
+                     </div>
+                     <button type="submit" class="btn btn-primary">Crear</button>
+                   </form>
+                 </div>
+               </div>
+             </div>
+
+             <button type="button" class="btn btn-outline-primary" (click)="salaIsCollapsed = !salaIsCollapsed"
+               [attr.aria-expanded]="!salaIsCollapsed" aria-controls="collapse2">
+               Crear Sala
+             </button>
+             <div id="collapse2" [ngbCollapse]="salaIsCollapsed">
+               <div class="card">
+                 <div class="card-body">
+                   <!-- sala form -->
+                   <form action="/formAction.ts">
+                     <div class="form-group">
+                       <label for="sel1">Sede:</label>
+                       <select class="form-control" id="sel1">
+                         <option>La kstellano</option>
+                         <option>Smbil</option>
+                         <option>Sn Ignco</option>
+                         <option>TacoTamal</option>
+                       </select>
+                     </div>
+                     <div class="form-group">
+                       <label for="sede">Reproduccion:</label>
+                       <select class="form-control" id="sel1">
+                         <option>2D</option>
+                         <option>3D</option>
+                         <option>4DX</option>
+                         <option>4DXYZK</option>
+                       </select>
+                     </div>
+                     <div class="form-group">
+                       <label for="ubi">Tipo de Sala:</label>
+                       <select class="form-control" id="sel1">
+                         <option>PREMIUM</option>
+                         <option>CHIMBA</option>
+                       </select>
+                     </div>
+                     <button type="submit" class="btn btn-primary">Crear</button>
+                   </form>
+                 </div>
+               </div>
+             </div>
+
+             <button type="button" class="btn btn-outline-primary" (click)="mapaIsCollapsed = !mapaIsCollapsed"
+               [attr.aria-expanded]="!mapaIsCollapsed" aria-controls="collapse3">
+               Crear Mapa Butacas
+             </button>
+             <div id="collapse3" [ngbCollapse]="mapaIsCollapsed">
+               <div class="card">
+                 <div class="card-body">
+                   <!-- sedes form -->
+                   <form action="/formAction.ts">
+                     <div class="form-group">
+                       <label for="sel1">Sede:</label>
+                       <select class="form-control" id="sel1">
+                         <option>La kstellano</option>
+                         <option>Smbil</option>
+                         <option>Sn Ignco</option>
+                         <option>TacoTamal</option>
+                       </select>
+                     </div>
+                     <div class="form-group">
+                       <label for="sel1">Sala:</label>
+                       <select class="form-control" id="sel1">
+                         <option>La 1</option>
+                         <option>2</option>
+                         <option>3</option>
+                         <option>salu4</option>
+                       </select>
+                     </div>
+                     <div class="form-group">
+                       <label for="edo">Columnas:</label>
+                       <input type="text" class="form-control" id="edo">
+                     </div>
+                     <div class="form-group">
+                       <label for="sede">Filas:</label>
+                       <input type="text" class="form-control" id="sede">
+                     </div>
+                     <div class="form-group">
+                       <label class="form-check-label">Pasillos: </label><br>
+                       <div class="form-check-inline">
+                         <input type="checkbox" class="form-check-input" value="">Centro
+                       </div>
+                       <div class="form-check-inline">
+                         <label class="form-check-label">
+                           <input type="checkbox" class="form-check-input" value="">Izquierda
+                         </label>
+                       </div>
+                       <div class="form-check-inline">
+                         <label class="form-check-label">
+                           <input type="checkbox" class="form-check-input" value="" >Derecha
+                         </label>
+                       </div>
+                     </div>
+                     <div class="form-group">
+                       <label class="form-check-label">Entradas: </label><br>
+                       <div class="form-check-inline">
+                         <label class="form-check-label">
+                           <input type="checkbox" class="form-check-input" value="">Izquierda
+                         </label>
+                       </div>
+                       <div class="form-check-inline">
+                         <label class="form-check-label">
+                           <input type="checkbox" class="form-check-input" value="" >Derecha
+                         </label>
+                       </div>
+                     </div>
+
+                     <div class="form-group">
+                       <label class="form-check-label">Entradas: </label><br>
+                       <div class="form-check-inline">
+                         <label class="form-check-label">
+                           <input type="checkbox" class="form-check-input" value="">Izquierda
+                         </label>
+                       </div>
+                       <div class="form-check-inline">
+                         <input type="checkbox" class="form-check-input" value="">Centro
+                       </div>
+                       <div class="form-check-inline">
+                         <label class="form-check-label">
+                           <input type="checkbox" class="form-check-input" value="" >Derecha
+                         </label>
+                       </div>
+                     </div>
+
+                     <button type="submit" class="btn btn-primary">Crear</button>
+                   </form>
+                 </div>
+               </div>
+             </div>
+
+             <button type="button" class="btn btn-outline-primary"
+               (click)="funcionesIsCollapsed = !funcionesIsCollapsed" [attr.aria-expanded]="!funcionesIsCollapsed"
+               aria-controls="collapse5">
+               Crear Funciones
+             </button>
+             <div id="collapse5" [ngbCollapse]="funcionesIsCollapsed">
+               <div class="card">
+                 <div class="card-body">
+                   <!-- sedes form -->
+                   <form action="/formAction.ts">
+                     <div class="form-group">
+                       <label for="sel1">Sede:</label>
+                       <select class="form-control" id="sel1">
+                         <option>La kstellano</option>
+                         <option>Smbil</option>
+                         <option>Sn Ignco</option>
+                         <option>TacoTamal</option>
+                       </select>
+                     </div>
+                     <div class="form-group">
+                        <label for="hora">Hora inicio y fin: </label><br>
+                        <input type="time" class="form-control" class="hora"> <input type="time" class="form-control"
+                          class="hora">
+                      </div>
+                     <div class="form-group">
+                       <label for="sel1">Sala:</label>
+                       <select class="form-control" id="sel1">
+                         <option>La 1</option>
+                         <option>salu2</option>
+                         <option>3</option>
+                         <option>lacua4</option>
+                       </select>
+                     </div>
+                     <div class="form-group">
+                       <label for="sel1">Pelicula:</label>
+                       <select class="form-control" id="sel1">
+                         <option>San Felipo</option>
+                         <option>SuperPepo</option>
+                         <option>Git Push --force</option>
+                         <option>PaolaRepo</option>
+                       </select>
+                     </div>
+                     <div class="form-group">
+                        <label for="sel1">Idioma:</label>
+                        <select class="form-control" id="sel1">
+                          <option>spanol</option>
+                          <option>engli</option>
+                          <option>flance</option>
+                          <option>pasta</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                          <label for="sel1">Subtitulos:</label>
+                          <select class="form-control" id="sel1">
+                            <option>No</option>
+                            <option>esp</option>
+                            <option>engli</option>
+                            <option>fr</option>
+                          </select>
+                        </div>
+                     <button type="submit" class="btn btn-primary">Crear</button>
+                   </form>
+                 </div>
+               </div>
+             </div>
