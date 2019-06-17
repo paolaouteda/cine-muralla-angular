@@ -1,3 +1,13 @@
-<p>
-  comida works!
-</p>
+<!-- card bst4 -->
+<div class="combos row">
+  <div class="card combos" style="width: 18rem;" *ngFor="let combo of combos">
+    <img class="card-img-top" src="../../../assets/images/1.png" height="150" width="150" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ combo.nombre }}</h5>
+      <div *ngFor="let comida of combo.comidas">
+        <p class="card-text">{{ comida.nombre }}: {{ comida.cantidad }}</p>
+      </div>
+      <a href="#" class="btn btn-primary" >Ordenar 1</a>
+    </div>
+  </div>
+</div>

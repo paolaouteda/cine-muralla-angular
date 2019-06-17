@@ -26,6 +26,7 @@ export class ButacasComponent implements OnInit {
   validateButaca = (fila, columna) => {
     return this.salaButacas.butacas[fila - 1][columna];
   };
+
   filas = () => {
     var min = 1;
     var max = this.salaButacas.numFilas;
@@ -49,13 +50,14 @@ export class ButacasComponent implements OnInit {
   };
 
   reservarAsiento = (fila, columna) => {
-      this.salaButacas.butacas[fila - 1][columna] = !this.salaButacas.butacas[
-        fila - 1
-      ][columna];
+      this.salaButacas.butacas[fila - 1][columna] = !this.salaButacas.butacas[fila - 1][columna];
 
       this.butacasCompradas[fila - 1][columna] = true;
-    
   };
+
+  desreservarAsiento = (fila, columna) => {
+    // TODO: implementar
+  }
 
   ngOnInit() {
     this.funcion = this.dataService.getOption("funcion");

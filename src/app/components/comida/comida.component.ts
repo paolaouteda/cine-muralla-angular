@@ -7,6 +7,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComidaComponent implements OnInit {
 
+  combos = [
+    {
+      comidas: [
+        {
+          nombre: 'Ferresco',
+          cantidad: 2
+        },
+        {
+          nombre: 'kotufa',
+          cantidad: 99
+        }
+      ],
+      nombre: 'Mega Kmbito'
+    },
+    {
+      comidas: [
+        {
+          nombre: 'Ferresco',
+          cantidad: 2
+        },
+        {
+          nombre: 'kotufa',
+          cantidad: 99
+        }
+      ],
+      nombre: 'Mega Kmbito'
+    },
+    {
+      comidas: [
+        {
+          nombre: 'Ferresco',
+          cantidad: 2
+        },
+        {
+          nombre: 'kotufa',
+          cantidad: 99
+        }
+      ],
+      nombre: 'Mega Kmbito'
+    }
+  ];
+
   constructor() { }
 
   ngOnInit() {
