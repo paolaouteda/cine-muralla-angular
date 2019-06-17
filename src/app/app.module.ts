@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,7 +35,7 @@ const appRoutes: Routes = [
     CarteleraComponent,
     ButacasComponent
   ],
-  imports: [RouterModule.forRoot(appRoutes), BrowserModule, AppRoutingModule],
+  imports: [RouterModule.forRoot(appRoutes), BrowserModule, AppRoutingModule, NgbModule],
   providers: [DataService],
   bootstrap: [AppComponent]
 })

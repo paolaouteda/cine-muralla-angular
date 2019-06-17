@@ -1,68 +1,74 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: "app-cines",
-  templateUrl: "./cines.component.html",
-  styleUrls: ["./cines.component.css"]
+  selector: 'app-cines',
+  templateUrl: './cines.component.html',
+  styleUrls: ['./cines.component.css']
 })
 export class CinesComponent implements OnInit {
   sedes = [
     {
-      id: 1,
-      estado: "Caracas",
+      estado: 'Caracas',
       cines: [
         {
-          nombreFiscal: "SAN IGNACIO",
-          ubicacion: "La castellana",
+          nombreFiscal: 1,
+          nombre: "el we",
+          ubicacion: 'La castellana',
           horarioInicio: new Date(),
           horarioFin: new Date()
         },
         {
-          nombreFiscal: "El Recreo",
-          ubicacion: "La castellana",
+          nombreFiscal: 2,
+          nombre: "el we",
+          ubicacion: 'La castellana',
           horarioInicio: new Date(),
           horarioFin: new Date()
         },
         {
-          nombreFiscal: "Tolon",
-          ubicacion: "La castellana",
+          nombreFiscal: 3,
+          nombre: "mi",
+          ubicacion: 'La castellana',
           horarioInicio: new Date(),
           horarioFin: new Date()
         },
         {
-          nombreFiscal: "El Millenium",
-          ubicacion: "La castellana",
+          nombreFiscal: 4,
+          nombre: "o",
+          ubicacion: 'La castellana',
           horarioInicio: new Date(),
           horarioFin: new Date()
         }
       ]
     },
     {
-      id: 2,
-      estado: "Apure",
+      estado: 'Apure',
       cines: [
         {
-          nombreFiscal: "SAN IGNACIO",
-          ubicacion: "La castellana",
+          nombreFiscal: 5,
+          nombre: "o",
+          ubicacion: 'La castellana',
           horarioInicio: new Date(),
           horarioFin: new Date()
         },
         {
-          nombreFiscal: "El Recreo",
-          ubicacion: "La castellana",
+          nombreFiscal: 6,
+          nombre: "o",
+          ubicacion: 'La castellana',
           horarioInicio: new Date(),
           horarioFin: new Date()
         },
         {
-          nombreFiscal: "Tolon",
-          ubicacion: "La castellana",
+          nombreFiscal: 7,
+          nombre: "o",
+          ubicacion: 'La castellana',
           horarioInicio: new Date(),
           horarioFin: new Date()
         },
         {
-          nombreFiscal: "El Millenium",
-          ubicacion: "La castellana",
+          nombreFiscal: 8,
+          nombre: "o",
+          ubicacion: 'La castellana',
           horarioInicio: new Date(),
           horarioFin: new Date()
         }
