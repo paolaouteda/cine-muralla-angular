@@ -15,8 +15,9 @@ export class ButacasComponent implements OnInit {
     numColumnas: 24,
     butacas: [[], [], [], [], [], [], [], [], [], [], [], []]
   };
-  butacasCompradas = [12][24];
   funcion = {};
+  butacasCompradas = [];
+  ultButaca = { fila: null, columna: null };
   constructor(private dataService: DataService) {}
 
   validarPasillo = () => {
@@ -50,14 +51,35 @@ export class ButacasComponent implements OnInit {
   };
 
   reservarAsiento = (fila, columna) => {
-      this.salaButacas.butacas[fila - 1][columna] = !this.salaButacas.butacas[fila - 1][columna];
-
-      this.butacasCompradas[fila - 1][columna] = true;
+    let index = this.butacasCompradas.findIndex(
+      butaca =>
+        butaca.fila === fila &&
+        (butaca.columna == columna + 1 || butaca.columna - 1)
+    );
+    if (this.butacasCompradas.length > 0 && index !== -1) {
+      this.butacasCompradas.push({ fila, columna });
+      this.salaButacas.butacas[fila - 1][columna] = !this.salaButacas.butacas[
+        fila - 1
+      ][columna];
+    } else {
+      if (this.butacasCompradas.length == 0) {
+        if (!this.salaButacas.butacas[fila - 1][columna]) {
+          this.butacasCompradas.push({ fila, columna });
+          this.salaButacas.butacas[fila - 1][columna] = !this.salaButacas
+            .butacas[fila - 1][columna];
+        } else alert("Por favor seleccione un asiento disponible");
+      } else {
+        index = this.butacasCompradas.findIndex(
+          butaca => butaca.fila === fila && butaca.columna == columna
+        );
+        if (index !== -1) {
+          this.salaButacas.butacas[fila - 1][columna] = !this.salaButacas
+            .butacas[fila - 1][columna];
+          this.butacasCompradas.splice(index, 1);
+        } else alert("Por favor seleccione un asiento contiguo");
+      }
+    }
   };
-
-  desreservarAsiento = (fila, columna) => {
-    // TODO: implementar
-  }
 
   ngOnInit() {
     this.funcion = this.dataService.getOption("funcion");

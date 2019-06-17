@@ -18,7 +18,9 @@
                 width="42"
               />
               <img
+                class="butaca"
                 *ngIf="validateButaca(f, c)"
+                (click)="reservarAsiento(f, c)"
                 src="../../../assets/images/asientoComprado.png"
                 alt="asiento"
                 height="42"
@@ -43,9 +45,11 @@
                 width="42"
               />
               <img
+                class="butaca"
+                *ngIf="validateButaca(f, c)"
                 src="../../../assets/images/asientoComprado.png"
                 alt="asiento"
-                (click)="desreservarAsiento(f, c)" 
+                (click)="desreservarAsiento(f, c)"
                 height="42"
                 width="42"
               />
