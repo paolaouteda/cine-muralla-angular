@@ -9,3 +9,7 @@
 .carousel {
   margin-top: 20px;
 }
+
+.verpeli {
+  z-index: 99999;
+}
