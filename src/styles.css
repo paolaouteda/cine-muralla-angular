@@ -34,6 +34,9 @@ label {
   margin: 0;
   padding: 0;
 }
+.header-title {
+  text-align: center;
+}
 body a:hover {
   text-decoration: none;
 }
