@@ -1,3 +1,10 @@
 .butaca {
   cursor: pointer;
 }
+
+.comprar-btn {
+  margin-top: 20px;
+  background-color: #ff8d1b;
+  border-color: #ff8d1b;
+  margin-left: -35%;
+}

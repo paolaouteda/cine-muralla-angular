@@ -1,16 +1,18 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { DataService } from "../services/data.service";
+import { DataService } from "../../services/data.service";
 
 @Component({
-  selector: "app-dashboard",
-  templateUrl: "./dashboard.component.html",
-  styleUrls: ["./dashboard.component.css"]
+  selector: "app-funciones",
+  templateUrl: "./funciones.component.html",
+  styleUrls: ["./funciones.component.css"]
 })
-export class DashboardComponent implements OnInit {
-  images = [1, 2, 3].map(
-    () => `https://picsum.photos/900/500?random&t=${Math.random()}`
-  );
+export class FuncionesComponent implements OnInit {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private dataService: DataService
+  ) {}
   funciones = [
     {
       horarioInicio: new Date(),
@@ -102,17 +104,16 @@ export class DashboardComponent implements OnInit {
       subtitulos: "espanol"
     }
   ];
+  nombreFiscal = "";
 
-  verPelicula(funcion: any) {
-    this.dataService.setOption("pelicula", funcion);
-    this.router.navigate([`peliculas/${funcion.pelicula.id}`]);
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.nombreFiscal = params.get("nombreFiscal");
+    });
   }
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private dataService: DataService
-  ) {}
-
-  ngOnInit() {}
+  reservar(funcion: any) {
+    this.dataService.setOption("funcion", funcion);
+    this.router.navigate([`butacas/${funcion.pelicula.id}`]);
+  }
 }

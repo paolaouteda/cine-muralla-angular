@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { DataService } from "../../services/data.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-butacas",
@@ -18,7 +19,7 @@ export class ButacasComponent implements OnInit {
   funcion = {};
   butacasCompradas = [];
   ultButaca = { fila: null, columna: null };
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private router: Router) {}
 
   validarPasillo = () => {
     return this.salaButacas.tipoPasillo.includes("C");
@@ -96,6 +97,21 @@ export class ButacasComponent implements OnInit {
       }
     }
   };
+
+  comprar() {
+    if (this.butacasCompradas.length > 0) {
+      const comprarComida = confirm("Desea comprar un combo adicionalmente?");
+      if (comprarComida) {
+        this.dataService.setOption("butacasCompradas", this.butacasCompradas);
+        this.router.navigate(["/comida"]);
+      } else {
+        console.log("llamar a endpoint para comprar funcion sin comida");
+        this.router.navigate(["/"]);
+      }
+    } else {
+      alert("Por favor compre alguna butaca");
+    }
+  }
 
   ngOnInit() {
     this.funcion = this.dataService.getOption("funcion");

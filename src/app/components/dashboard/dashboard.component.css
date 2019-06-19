@@ -1,5 +1,6 @@
 .carousel-img {
   width: 100%;
+  cursor: pointer;
 }
 
 .cartelera {
@@ -8,8 +9,4 @@
 
 .carousel {
   margin-top: 20px;
-}
-
-.verpeli {
-  z-index: 99999;
 }

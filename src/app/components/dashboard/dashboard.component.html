@@ -1,0 +1,19 @@
+<div class="container cartelera">
+  <div class="general_agileits_genres">
+    <h4 class="title-component">CATELERA</h4>
+  </div>
+  <ngb-carousel *ngIf="peliculas" class="carousel">
+    <div *ngFor="let pelicula of peliculas">
+      <ng-template ngbSlide>
+        <img
+          [src]="pelicula.imagenHorizontal"
+          alt="slide"
+          class="carousel-img"
+          height="400"
+          width="100"
+          (click)="verPelicula(pelicula.id)"
+        />
+      </ng-template>
+    </div>
+  </ngb-carousel>
+</div>

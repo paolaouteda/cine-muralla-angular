@@ -8,10 +8,11 @@ import { Routes, RouterModule } from "@angular/router";
 import { CinesComponent } from "./components/cines/cines.component";
 import { AdministradorComponent } from "./components/administrador/administrador.component";
 import { ComidaComponent } from "./components/comida/comida.component";
-import { CarteleraComponent } from "./components/cartelera/cartelera.component";
+import { FuncionesComponent } from "./components/funciones/funciones.component";
 import { ButacasComponent } from "./components/butacas/butacas.component";
 import { DataService } from "./services/data.service";
-import { DashboardComponent } from "./dashboard/dashboard.component";
+import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { PeliculasComponent } from "./components/peliculas/peliculas.component";
 
 const appRoutes: Routes = [
   { path: "", component: DashboardComponent },
@@ -22,11 +23,11 @@ const appRoutes: Routes = [
     component: ComidaComponent
   },
   {
-    path: "cartelera/:nombreFiscal",
-    component: CarteleraComponent
+    path: "funciones/:nombreFiscal",
+    component: FuncionesComponent
   },
   { path: "butacas/:id", component: ButacasComponent },
-  { path: "peliculas/:id", component: CarteleraComponent }
+  { path: "pelicula/:id", component: PeliculasComponent }
 ];
 
 @NgModule({
@@ -35,9 +36,10 @@ const appRoutes: Routes = [
     CinesComponent,
     AdministradorComponent,
     ComidaComponent,
-    CarteleraComponent,
+    FuncionesComponent,
     ButacasComponent,
-    DashboardComponent
+    DashboardComponent,
+    PeliculasComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
