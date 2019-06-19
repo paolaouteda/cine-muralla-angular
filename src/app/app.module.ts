@@ -25,7 +25,8 @@ const appRoutes: Routes = [
     path: "cartelera/:nombreFiscal",
     component: CarteleraComponent
   },
-  { path: "butacas/:id", component: ButacasComponent }
+  { path: "butacas/:id", component: ButacasComponent },
+  { path: "peliculas/:id", component: CarteleraComponent }
 ];
 
 @NgModule({

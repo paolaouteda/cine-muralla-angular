@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from '@angular/router';
+import { DataService } from '../services/dataService';
 
 @Component({
   selector: "app-dashboard",
@@ -100,7 +102,15 @@ export class DashboardComponent implements OnInit {
       subtitulos: "espanol"
     }
   ];
-  constructor() {}
+
+  verPelicula(funcion: any) {
+    this.dataService.setOption('pelicula', funcion);
+    this.router.navigate([`peliculas/${funcion.pelicula.id}`]);
+  }
+
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private dataService: DataService) {}
 
   ngOnInit() {}
 }
