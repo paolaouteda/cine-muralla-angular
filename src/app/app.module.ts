@@ -10,7 +10,7 @@ import { AdministradorComponent } from "./components/administrador/administrador
 import { ComidaComponent } from "./components/comida/comida.component";
 import { CarteleraComponent } from "./components/cartelera/cartelera.component";
 import { ButacasComponent } from "./components/butacas/butacas.component";
-import { DataService } from "./services/dataService";
+import { DataService } from "./services/data.service";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 
 const appRoutes: Routes = [
