@@ -4,11 +4,11 @@
   </div>
   <ngb-carousel *ngIf="images" class="carousel" style="height: 25rem; width: 25rem">
 
-    <div *ngFor="let funcion of funciones">
-    <ng-template ngbSlide>
+    <ng-template ngbSlide *ngFor="let funcion of funciones">
       <img [src]="funcion.pelicula.imagen" alt="slide" class="carousel-img" height="400" width="100" />
       <div class="carousel-caption">
         <h3>{{ funcion.pelicula.titulo }}</h3>
+        <div class="verpeli" (click)="verPelicula(funcion)" style="color: blue">CLICK PARA VER FUNCIONES</div>
         <p>
           En sala {{ funcion.sala.id }}, tipo {{ funcion.sala.tipo }} {{ funcion.sala.repro }}
         </p>
@@ -17,9 +17,7 @@
         </h5>
         <h6>{{funcion.idioma}}, Subtitulos en {{ funcion.subtitulos }}</h6>
       </div>
-      <button class="btn btn-primary" (click)="verPelicula(funcion)">Ver funciones ></button>
       </ng-template>
-    </div>
 
   </ngb-carousel>
 </div>
