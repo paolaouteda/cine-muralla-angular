@@ -1,0 +1,28 @@
+<div class="container cartelera">
+  <div class="general_agileits_genres">
+    <h4 class="title-component">CATELERA</h4>
+  </div>
+  <ngb-carousel *ngIf="images" class="carousel">
+    <ng-template ngbSlide>
+      <img [src]="images[0]" alt="Random first slide" class="carousel-img" />
+      <div class="carousel-caption">
+        <h3>First slide label</h3>
+        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <img [src]="images[1]" alt="Random second slide" class="carousel-img" />
+      <div class="carousel-caption">
+        <h3><a href="/#">Second slide label</a></h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <img [src]="images[2]" alt="Random third slide" class="carousel-img" />
+      <div class="carousel-caption">
+        <h3>Third slide label</h3>
+        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
