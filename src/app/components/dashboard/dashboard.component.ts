@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DataService } from "../../services/data.service";
+import { ComidaService } from 'src/app/services/comida.service';
 
 @Component({
   selector: "app-dashboard",
@@ -31,7 +32,10 @@ export class DashboardComponent implements OnInit {
     this.router.navigate([`pelicula/${peliculaId}`]);
   }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private comidaService: ComidaService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    this.comidaService.getComida(1);
+  }
 }
