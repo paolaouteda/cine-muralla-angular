@@ -1,7 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { Routes, RouterModule } from "@angular/router";
@@ -14,7 +13,9 @@ import { ButacasComponent } from "./components/butacas/butacas.component";
 import { DataService } from "./services/data.service";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { PeliculasComponent } from "./components/peliculas/peliculas.component";
-import { ComidaService } from './services/comida.service';
+import { SedesService } from "./services/sedes.service";
+import { CarteleraService } from "./services/cartelera.service";
+import { FuncionesService } from "./services/funciones.service";
 
 const appRoutes: Routes = [
   { path: "", component: DashboardComponent },
@@ -47,10 +48,10 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     AppRoutingModule,
-    NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
-  providers: [DataService, ComidaService],
+  providers: [DataService, SedesService, CarteleraService, FuncionesService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DataService } from "../../services/data.service";
+import { FuncionesService } from "src/app/services/funciones.service";
 
 @Component({
   selector: "app-funciones",
