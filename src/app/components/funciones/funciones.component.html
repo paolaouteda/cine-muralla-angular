@@ -5,14 +5,14 @@
   <div *ngFor="let funcion of funciones" class="col-md-2">
     <div class="card" style="width: 18rem;">
       <img
-        [src]="funcion.pelicula.imagen"
+        [src]="funcion.imagenVertical"
         class="card-img-top"
         alt="imagen pelicula"
         height="250"
       />
       <div class="card-body">
-        <h5 class="card-title">{{ funcion.pelicula.titulo }}</h5>
-        <p class="card-text">{{ funcion.pelicula.descripcion }}</p>
+        <h5 class="card-title">{{ funcion.titulo }}</h5>
+        <p class="card-text">{{ funcion.descripcion }}</p>
         <a class="btn btn-primary reservar-btn" (click)="reservar(funcion)"
           >Reservar</a
         >
@@ -23,8 +23,8 @@
           Hora de inicio: {{ funcion.horarioInicio }}
         </li>
         <li class="list-group-item">
-          Sala: {{ funcion.sala.id }} - {{ funcion.sala.tipo }} -
-          {{ funcion.sala.repro }}
+          Sala: {{ funcion.idSala }} - {{ funcion.tipoSala }} -
+          {{ funcion.TipoRepro }}
         </li>
       </ul>
     </div>

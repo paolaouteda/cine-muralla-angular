@@ -9,4 +9,12 @@ export class SedesService {
   getSedes() {
     return this.http.get(this.ruta);
   }
+
+  getUbicaciones(){
+    return this.http.get(`${this.ruta}/ubicaciones`);
+  }
+
+  getFuncionesBySede(nombreFiscal: number){
+    return this.http.get(`${this.ruta}/${nombreFiscal}/funciones`);
+  }
 }

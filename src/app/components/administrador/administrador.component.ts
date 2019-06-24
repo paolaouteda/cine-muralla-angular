@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { SedesService } from 'src/app/services/sedes.service';
 
 @Component({
   selector: 'app-administrador',
@@ -12,9 +13,22 @@ export class AdministradorComponent implements OnInit {
   public mapaIsCollapsed = true;
   public funcionesIsCollapsed = true;
 
-  constructor() { }
+  ubicaciones;
+  
+  @Input()
+  ubicacion;
+  @Input()
+  nombre;
+  @Input()
+  horaInicio;
+  @Input()
+  horaFin;
+ 
+
+  constructor(private sedesService: SedesService) { }
 
   ngOnInit() {
+    this.sedesService.getUbicaciones().subscribe(data => console.log(data));
   }
 
 }

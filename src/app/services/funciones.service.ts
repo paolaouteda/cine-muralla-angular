@@ -9,4 +9,5 @@ export class FuncionesService {
   getFuncionesByPelicula(idPelicula: number) {
     return this.http.get(`${this.ruta}/pelicula/${idPelicula}`);
   }
+
 }
