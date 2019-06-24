@@ -4,7 +4,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { Routes, RouterModule } from "@angular/router";
-import {  HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from "@angular/common/http";
 import { CinesComponent } from "./components/cines/cines.component";
 import { AdministradorComponent } from "./components/administrador/administrador.component";
 import { ComidaComponent } from "./components/comida/comida.component";
@@ -16,6 +16,7 @@ import { PeliculasComponent } from "./components/peliculas/peliculas.component";
 import { SedesService } from "./services/sedes.service";
 import { CarteleraService } from "./services/cartelera.service";
 import { FuncionesService } from "./services/funciones.service";
+import { MapaButacasServices } from "./services/mapas.services";
 
 const appRoutes: Routes = [
   { path: "", component: DashboardComponent },
@@ -51,7 +52,13 @@ const appRoutes: Routes = [
     HttpClientModule,
     NgbModule
   ],
-  providers: [DataService, SedesService, CarteleraService, FuncionesService],
+  providers: [
+    DataService,
+    SedesService,
+    CarteleraService,
+    FuncionesService,
+    MapaButacasServices
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

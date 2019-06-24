@@ -4,6 +4,10 @@
   cursor: pointer;
 }
 
+.cine {
+  cursor: pointer;
+}
+
 .title {
   padding-left: 10px;
   color: #ff8d1b;

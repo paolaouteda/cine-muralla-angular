@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DataService } from "../../services/data.service";
-import { SedesService } from 'src/app/services/sedes.service';
+import { SedesService } from "src/app/services/sedes.service";
 
 @Component({
   selector: "app-funciones",
@@ -21,16 +21,19 @@ export class FuncionesComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.nombreFiscal = params.get("nombreFiscal");
-      this.sedesService.getFuncionesBySede(Number.parseInt(this.nombreFiscal)).subscribe(data =>{ 
-        console.log(data);
-        this.funciones = data
-      });
-
+      this.sedesService
+        .getFuncionesBySede(Number.parseInt(this.nombreFiscal))
+        .subscribe(data => {
+          this.funciones = data;
+          this.funciones = this.funciones.filter(funcion => {
+            let date = new Date(funcion.horarioInicio);
+            return new Date() <= date;
+          });
+        });
     });
   }
 
   reservar(funcion: any) {
-    this.dataService.setOption("funcion", funcion);
-    this.router.navigate([`butacas/${funcion.pelicula.id}`]);
+    this.router.navigate([`butacas/${funcion.idFuncion}`]);
   }
 }

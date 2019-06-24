@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { DataService } from "../../services/data.service";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
+import { MapaButacasServices } from "src/app/services/mapas.services";
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 
 @Component({
   selector: "app-butacas",
@@ -16,13 +18,20 @@ export class ButacasComponent implements OnInit {
     numColumnas: 24,
     butacas: [[], [], [], [], [], [], [], [], [], [], [], []]
   };
-  funcion = {};
+
+  mapaButaca;
+  funcion;
   butacasCompradas = [];
   ultButaca = { fila: null, columna: null };
-  constructor(private dataService: DataService, private router: Router) {}
+  constructor(
+    private dataService: DataService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private mapaButacasServices: MapaButacasServices
+  ) {}
 
   validarPasillo = () => {
-    return this.salaButacas.tipoPasillo.includes("C");
+    return this.salaButacas.tipoPasillo.includes("F");
   };
 
   validateButaca = (fila, columna) => {
@@ -114,6 +123,17 @@ export class ButacasComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      let funcionId = Number.parseInt(params.get("id"));
+      this.mapaButacasServices.getMapaButaca(funcionId).subscribe(data => {
+        this.mapaButaca = data[0];
+        this.salaButacas.numColumnas = this.mapaButaca.cantidadColumnas;
+        this.salaButacas.numFilas = this.mapaButaca.cantidadFilas;
+        this.salaButacas.tipoPasillo = this.mapaButaca.nombrePasillo;
+        this.salaButacas.tipoEntrada = this.mapaButaca.nombreEntrada;
+        this.salaButacas.tipoSalida = this.mapaButaca.nombreSalida;
+      });
+    });
     this.funcion = this.dataService.getOption("funcion");
   }
 }

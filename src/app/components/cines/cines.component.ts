@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { SedesService } from "src/app/services/sedes.service";
 
 @Component({
   selector: "app-cines",
@@ -7,80 +8,26 @@ import { Router } from "@angular/router";
   styleUrls: ["./cines.component.css"]
 })
 export class CinesComponent implements OnInit {
-  sedes = [
-    {
-      ubicacion: "Caracas",
-      cines: [
-        {
-          nombreFiscal: 1,
-          nombre: "el we",
-          ubicacion: "Caracas",
-          horarioInicio: new Date(),
-          horarioFin: new Date()
-        },
-        {
-          nombreFiscal: 2,
-          nombre: "el we",
-          ubicacion: "Caracas",
-          horarioInicio: new Date(),
-          horarioFin: new Date()
-        },
-        {
-          nombreFiscal: 3,
-          nombre: "mi",
-          ubicacion: "Caracas",
-          horarioInicio: new Date(),
-          horarioFin: new Date()
-        },
-        {
-          nombreFiscal: 4,
-          nombre: "o",
-          ubicacion: "Caracas",
-          horarioInicio: new Date(),
-          horarioFin: new Date()
-        }
-      ]
-    },
-    {
-      ubicacion: "Apure",
-      cines: [
-        {
-          nombreFiscal: 5,
-          nombre: "o",
-          ubicacion: "Apure",
-          horarioInicio: new Date(),
-          horarioFin: new Date()
-        },
-        {
-          nombreFiscal: 6,
-          nombre: "o",
-          ubicacion: "Apure",
-          horarioInicio: new Date(),
-          horarioFin: new Date()
-        },
-        {
-          nombreFiscal: 7,
-          nombre: "o",
-          ubicacion: "Apure",
-          horarioInicio: new Date(),
-          horarioFin: new Date()
-        },
-        {
-          nombreFiscal: 8,
-          nombre: "o",
-          ubicacion: "Apure",
-          horarioInicio: new Date(),
-          horarioFin: new Date()
-        }
-      ]
-    }
-  ];
+  sedes;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private sedesService: SedesService) {}
 
-  selectCine(nombreFiscal: string) {
+  selectCine(nombreFiscal: number) {
     this.router.navigate([`funciones/${nombreFiscal}`]);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.sedesService.getSedes().subscribe(data => {
+      this.sedes = data;
+      let organizedSedes = [];
+      this.sedes.forEach(sede => {
+        let index = organizedSedes.findIndex(
+          org => org.ubicacion == sede.ubicacion
+        );
+        if (index !== -1) organizedSedes[index].cines.push(sede);
+        else organizedSedes.push({ ubicacion: sede.ubicacion, cines: [sede] });
+      });
+      this.sedes = organizedSedes;
+    });
+  }
 }
