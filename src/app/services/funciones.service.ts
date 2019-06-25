@@ -10,4 +10,8 @@ export class FuncionesService {
     return this.http.get(`${this.ruta}/pelicula/${idPelicula}`);
   }
 
+  crear(funcion) {
+    return this.http.post(`${this.ruta}/crear`,funcion);
+  }
+
 }

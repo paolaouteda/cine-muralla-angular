@@ -17,6 +17,9 @@ import { SedesService } from "./services/sedes.service";
 import { CarteleraService } from "./services/cartelera.service";
 import { FuncionesService } from "./services/funciones.service";
 import { MapaButacasServices } from "./services/mapas.services";
+import { PeliculasService } from "./services/peliculas.services";
+import { FormsModule } from '@angular/forms';
+import { SalasService } from './services/salas.service';
 
 const appRoutes: Routes = [
   { path: "", component: DashboardComponent },
@@ -50,11 +53,14 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     NgbModule
   ],
   providers: [
     DataService,
     SedesService,
+    SalasService,
+    PeliculasService,
     CarteleraService,
     FuncionesService,
     MapaButacasServices

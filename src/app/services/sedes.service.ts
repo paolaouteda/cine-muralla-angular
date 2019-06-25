@@ -10,11 +10,15 @@ export class SedesService {
     return this.http.get(this.ruta);
   }
 
-  getUbicaciones(){
-    return this.http.get(`${this.ruta}/ubicaciones`);
+  getNombres(){
+    return this.http.get(`${this.ruta}/nombres`);
   }
 
   getFuncionesBySede(nombreFiscal: number){
     return this.http.get(`${this.ruta}/${nombreFiscal}/funciones`);
+  }
+
+  guardarSede(sede){
+    return this.http.post(`${this.ruta}/crear`, sede)
   }
 }

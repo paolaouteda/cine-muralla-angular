@@ -16,21 +16,21 @@
   <div class="card">
     <div class="card-body">
       <!-- sedes form -->
-      <form action="/formAction.ts">
+      <form>
         <div class="form-group">
           <label for="ubi">Ubicacion:</label>
-          <input type="text" class="form-control" id="ubi" />
+          <input [(ngModel)]="ubicacion" name="ubicacion" type="text" class="form-control" id="ubi" />
         </div>
         <div class="form-group">
           <label for="sede">Nombre:</label>
-          <input type="text" class="form-control" id="sede" />
+          <input [(ngModel)]="nombre" name="nombre" type="text" class="form-control" id="sede" />
         </div>
         <div class="form-group">
           <label for="hora">Hora inicio y fin: </label><br />
-          <input type="time" class="form-control" class="hora" />
-          <input type="time" class="form-control" class="hora" />
+          <input [(ngModel)]="horaInicio" name="horaInicio" type="time" class="form-control" class="hora" />
+          <input [(ngModel)]="horaFin" name="horaFin" type="time" class="form-control" class="hora" />
         </div>
-        <button type="submit" class="btn btn-primary">Crear</button>
+        <button (click)="crearSede()" type="submit" class="btn btn-primary">Crear Sede</button>
       </form>
     </div>
   </div>
@@ -49,33 +49,26 @@
   <div class="card">
     <div class="card-body">
       <!-- sala form -->
-      <form action="/formAction.ts">
+      <form>
         <div class="form-group">
           <label for="sel1">Sede:</label>
-          <select class="form-control" id="sel1">
-            <option>La kstellano</option>
-            <option>Smbil</option>
-            <option>Sn Ignco</option>
-            <option>TacoTamal</option>
+          <select [(ngModel)]="nombreSala" name="nombreSala"  class="form-control" id="sel1">
+            <option *ngFor="let nombre of nombres" [value]="nombre.nombreFiscal">{{nombre.nombre}}</option>
           </select>
         </div>
         <div class="form-group">
           <label for="sede">Reproduccion:</label>
-          <select class="form-control" id="sel1">
-            <option>2D</option>
-            <option>3D</option>
-            <option>4DX</option>
-            <option>4DXYZK</option>
+          <select [(ngModel)]="tipoRepro" name="tipoRepro"  class="form-control" id="sel1">
+            <option *ngFor="let reproduccion of reproducciones" [value]="reproduccion.idTipoRepro">{{reproduccion.tipoRepro}}</option>
           </select>
         </div>
         <div class="form-group">
           <label for="ubi">Tipo de Sala:</label>
-          <select class="form-control" id="sel1">
-            <option>PREMIUM</option>
-            <option>CHIMBA</option>
+          <select [(ngModel)]="tipoSala" name="tipoSala" class="form-control" id="sel1">
+            <option *ngFor="let tipoSala of tiposSala" [value]="tipoSala.idTipoSala">{{tipoSala.tipoSala}}</option>
           </select>
         </div>
-        <button type="submit" class="btn btn-primary">Crear</button>
+        <button (click)="crearSala()" type="submit" class="btn btn-primary">Crear Sala</button>
       </form>
     </div>
   </div>
@@ -94,41 +87,37 @@
   <div class="card">
     <div class="card-body">
       <!-- sedes form -->
-      <form action="/formAction.ts">
+      <form>
         <div class="form-group">
           <label for="sel1">Sede:</label>
-          <select class="form-control" id="sel1">
-            <option>La kstellano</option>
-            <option>Smbil</option>
-            <option>Sn Ignco</option>
-            <option>TacoTamal</option>
+          <select (change)="escogerSalas()" [(ngModel)]="nombreSala" name="nombreSala" class="form-control" id="sel1">
+            <option *ngFor="let nombre of nombres" [value]="nombre.nombreFiscal">{{nombre.nombre}}</option>
           </select>
         </div>
         <div class="form-group">
           <label for="sel1">Sala:</label>
-          <select class="form-control" id="sel1">
-            <option>La 1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>salu4</option>
+          <select [(ngModel)]="sala" name="sala" class="form-control" id="sel1">
+            <option *ngFor="let idSala of idSalas" [value]="idSala.idSala">{{idSala.idSala}}</option>
           </select>
         </div>
         <div class="form-group">
           <label for="edo">Columnas:</label>
-          <input type="text" class="form-control" id="edo" />
+          <input [(ngModel)]="columnas" name="columnas"type="text" class="form-control" id="edo" />
         </div>
         <div class="form-group">
           <label for="sede">Filas:</label>
-          <input type="text" class="form-control" id="sede" />
+          <input [(ngModel)]="filas" name="filas" type="text" class="form-control" id="sede" />
         </div>
+
         <div class="form-group">
           <label class="form-check-label">Pasillos: </label><br />
           <div class="form-check-inline">
-            <input type="checkbox" class="form-check-input" value="" />Centro
+            <input [(ngModel)]="pasilloCentro" name="PasilloCentro" 
+            type="checkbox" class="form-check-input" value="" />Centro
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input
+              <input [(ngModel)]="pasilloIzquierdo" name="PasilloIzquierdo"
                 type="checkbox"
                 class="form-check-input"
                 value=""
@@ -137,15 +126,17 @@
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="checkbox" class="form-check-input" value="" />Derecha
+              <input [(ngModel)]="pasilloDerecho" name="PasilloDerecho"
+              type="checkbox" class="form-check-input" value="" />Derecha
             </label>
           </div>
         </div>
+       
         <div class="form-group">
           <label class="form-check-label">Entradas: </label><br />
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input
+              <input [(ngModel)]="entradaIzquierda" name="EntradaIzquierda"
                 type="checkbox"
                 class="form-check-input"
                 value=""
@@ -154,16 +145,17 @@
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="checkbox" class="form-check-input" value="" />Derecha
+              <input [(ngModel)]="entradaDerecha" name="EntradaDerecha"
+              type="checkbox" class="form-check-input" value="" />Derecha
             </label>
           </div>
         </div>
 
         <div class="form-group">
-          <label class="form-check-label">Entradas: </label><br />
+          <label class="form-check-label">Salidas: </label><br />
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input
+              <input [(ngModel)]="salidaIzquierda" name="SalidaIzquierda"
                 type="checkbox"
                 class="form-check-input"
                 value=""
@@ -171,16 +163,18 @@
             </label>
           </div>
           <div class="form-check-inline">
-            <input type="checkbox" class="form-check-input" value="" />Centro
+            <input [(ngModel)]="salidaCentro" name="SalidaCentro"
+            type="checkbox" class="form-check-input" value="" />Centro
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="checkbox" class="form-check-input" value="" />Derecha
+              <input [(ngModel)]="salidaDerecha" name="salidaDerecha" 
+              type="checkbox" class="form-check-input" value="" />Derecha
             </label>
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Crear</button>
+        <button (click)="crearMapaButaca()" type="submit" class="btn btn-primary">Crear Mapa Butaca</button>
       </form>
     </div>
   </div>
@@ -199,23 +193,17 @@
   <div class="card">
     <div class="card-body">
       <!-- sedes form -->
-      <form action="/formAction.ts">
+      <form>
         <div class="form-group">
           <label for="sel1">Sede:</label>
-          <select class="form-control" id="sel1">
-            <option>La kstellano</option>
-            <option>Smbil</option>
-            <option>Sn Ignco</option>
-            <option>TacoTamal</option>
+          <select (change)="escogerSalas()" [(ngModel)]="nombreSala" name="nombreSala" class="form-control" id="sel1">
+            <option *ngFor="let nombre of nombres" [value]="nombre.nombreFiscal">{{nombre.nombre}}</option>
           </select>
         </div>
         <div class="form-group">
           <label for="sel1">Sala:</label>
-          <select class="form-control" id="sel1">
-            <option>La 1</option>
-            <option>salu2</option>
-            <option>3</option>
-            <option>lacua4</option>
+          <select [(ngModel)]="sala" name="sala" class="form-control" id="sel1">
+            <option *ngFor="let pkSala of idSalas" [value]="pkSala.idSala">{{pkSala.idSala}}</option>
           </select>
         </div>
         <div class="form-group">
@@ -224,37 +212,29 @@
         </div>
         <div class="form-group">
           <label for="hora">Hora inicio y fin: </label><br />
-          <input type="time" class="form-control" class="hora" />
-          <input type="time" class="form-control" class="hora" />
+          <input [(ngModel)]="funcFechaInicio" name="funcFechaInicio" type="datetime-local" class="form-control" class="hora" />
+          <input [(ngModel)]="funcFechaFinal" name="funcFechaFinal" type="datetime-local" class="form-control" class="hora" />
         </div>
         <div class="form-group">
           <label for="sel1">Pelicula:</label>
-          <select class="form-control" id="sel1">
-            <option>San Felipo</option>
-            <option>SuperPepo</option>
-            <option>Git Push --force</option>
-            <option>PaolaRepo</option>
+          <select [(ngModel)]="pelicula" name="pelicula" class="form-control" id="sel1">
+            <option *ngFor="let peli of peliculas" [value]="peli.idPelicula">{{peli.titulo}}</option>
           </select>
         </div>
         <div class="form-group">
           <label for="sel1">Idioma:</label>
-          <select class="form-control" id="sel1">
-            <option>spanol</option>
-            <option>engli</option>
-            <option>flance</option>
-            <option>pasta</option>
+          <select [(ngModel)]="idioma" name="idioma" class="form-control" id="sel1">
+            <option *ngFor="let idio of idiomas" [value]="idio.idIdioma" >{{idio.idioma}}</option>
           </select>
         </div>
         <div class="form-group">
           <label for="sel1">Subtitulos:</label>
-          <select class="form-control" id="sel1">
-            <option>No</option>
-            <option>esp</option>
-            <option>engli</option>
-            <option>fr</option>
+          <select [(ngModel)]="subtitulo" name="subtitulo" class="form-control" id="sel1">
+            <option *ngFor="let sub of subtitulos" [value]="sub.idSubtitulo" >{{sub.subtitulo}}</option>
+            <option value="">Ninguno</option>
           </select>
         </div>
-        <button type="submit" class="btn btn-primary">Crear</button>
+        <button (click)="crearFuncion()" type="submit" class="btn btn-primary">Crear</button>
       </form>
     </div>
   </div>
