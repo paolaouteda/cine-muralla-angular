@@ -6,12 +6,13 @@ import { PeliculasService } from 'src/app/services/peliculas.services';
 import { FuncionesService } from 'src/app/services/funciones.service';
 
 @Component({
-  selector: 'app-administrador',
-  templateUrl: './administrador.component.html',
-  styleUrls: ['./administrador.component.css']
+  selector: "app-administrador",
+  templateUrl: "./administrador.component.html",
+  styleUrls: ["./administrador.component.css"]
 })
 export class AdministradorComponent implements OnInit {
   // Permitir Collapse
+  public peliculaIsCollapsed = true;
   public sedeIsCollapsed = true;
   public salaIsCollapsed = true;
   public mapaIsCollapsed = true;
