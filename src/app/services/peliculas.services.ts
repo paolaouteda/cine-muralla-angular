@@ -17,4 +17,8 @@ export class PeliculasService {
   getSubtitulos() {
     return this.http.get(`${this.ruta}/subtitulos`);
   }
+
+  crearPelicula(pelicula) {
+    return this.http.post(`${this.ruta}/crearPelicula`, pelicula);
+  }
 }
