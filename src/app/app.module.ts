@@ -17,6 +17,8 @@ import { SedesService } from "./services/sedes.service";
 import { CarteleraService } from "./services/cartelera.service";
 import { FuncionesService } from "./services/funciones.service";
 import { MapaButacasServices } from "./services/mapas.services";
+import { SalasService } from "./services/salas.service";
+import { CombosService } from "./services/combos.service";
 
 const appRoutes: Routes = [
   { path: "", component: DashboardComponent },
@@ -57,7 +59,9 @@ const appRoutes: Routes = [
     SedesService,
     CarteleraService,
     FuncionesService,
-    MapaButacasServices
+    MapaButacasServices,
+    CombosService,
+    SalasService
   ],
   bootstrap: [AppComponent]
 })

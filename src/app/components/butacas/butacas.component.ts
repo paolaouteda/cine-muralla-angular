@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { DataService } from "../../services/data.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { MapaButacasServices } from "src/app/services/mapas.services";
-import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
+import { SalasService } from "../../services/salas.service";
+import { FuncionesService } from "src/app/services/funciones.service";
 
 @Component({
   selector: "app-butacas",
@@ -16,18 +17,23 @@ export class ButacasComponent implements OnInit {
     tipoEntrada: "I",
     numFilas: 12,
     numColumnas: 24,
-    butacas: [[], [], [], [], [], [], [], [], [], [], [], []]
+    butacas: []
   };
 
   mapaButaca;
   funcion;
   butacasCompradas = [];
-  ultButaca = { fila: null, columna: null };
+  textoEntradas = "La sala";
+  textoPasillos = "La sala";
+  textoSalidas = "La sala";
+
   constructor(
     private dataService: DataService,
     private router: Router,
     private route: ActivatedRoute,
-    private mapaButacasServices: MapaButacasServices
+    private mapaButacasServices: MapaButacasServices,
+    private salasService: SalasService,
+    private funcionesServices: FuncionesService
   ) {}
 
   validarPasillo = () => {
@@ -35,7 +41,11 @@ export class ButacasComponent implements OnInit {
   };
 
   validateButaca = (fila, columna) => {
-    return this.salaButacas.butacas[fila - 1][columna];
+    const butaca = this.salaButacas.butacas.find(
+      butaca => butaca.numColumna == columna && butaca.numFila == fila
+    );
+
+    return butaca && butaca.disponible == 0;
   };
 
   filas = () => {
@@ -74,15 +84,22 @@ export class ButacasComponent implements OnInit {
       )
     ) {
       this.butacasCompradas.push({ fila, columna });
-      this.salaButacas.butacas[fila - 1][columna] = !this.salaButacas.butacas[
-        fila - 1
-      ][columna];
+      this.salaButacas.butacas.map(butaca =>
+        butaca.numColumna == columna && butaca.numFila == fila
+          ? (butaca.disponible = 0)
+          : butaca
+      );
     } else {
       if (this.butacasCompradas.length == 0) {
-        if (!this.salaButacas.butacas[fila - 1][columna]) {
+        const butaca = this.salaButacas.butacas.find(
+          butaca => butaca.numColumna == columna && butaca.numFila == fila
+        );
+        if (butaca.disponible == 1) {
           this.butacasCompradas.push({ fila, columna });
-          this.salaButacas.butacas[fila - 1][columna] = !this.salaButacas
-            .butacas[fila - 1][columna];
+          butaca.disponible = 0;
+          this.salaButacas.butacas[
+            this.salaButacas.butacas.findIndex(b => b == butaca)
+          ] = butaca;
         } else alert("Por favor seleccione un asiento disponible");
       } else {
         index = this.butacasCompradas.findIndex(
@@ -98,8 +115,15 @@ export class ButacasComponent implements OnInit {
           if (init != -1 && finish != -1) {
             alert("Seleccione una butaca de los extremos");
           } else {
-            this.salaButacas.butacas[fila - 1][columna] = !this.salaButacas
-              .butacas[fila - 1][columna];
+            const butaca = this.salaButacas.butacas.find(
+              butaca => butaca.numColumna == columna && butaca.numFila == fila
+            );
+            if (butaca.disponible == 1) butaca.disponible = 0;
+            else butaca.disponible = 1;
+
+            this.salaButacas[
+              this.salaButacas.butacas.findIndex(b => b == butaca)
+            ] = butaca;
             this.butacasCompradas.splice(index, 1);
           }
         } else alert("Por favor seleccione un asiento contiguo");
@@ -110,11 +134,17 @@ export class ButacasComponent implements OnInit {
   comprar() {
     if (this.butacasCompradas.length > 0) {
       const comprarComida = confirm("Desea comprar un combo adicionalmente?");
+      const compra = {
+        idFuncion: this.funcion.idFuncion,
+        asientos: this.butacasCompradas.length
+      };
       if (comprarComida) {
-        this.dataService.setOption("butacasCompradas", this.butacasCompradas);
+        this.dataService.setOption("compra", compra);
         this.router.navigate(["/comida"]);
       } else {
-        console.log("llamar a endpoint para comprar funcion sin comida");
+        this.funcionesServices
+          .comprar(compra)
+          .subscribe(data => console.log(data));
         this.router.navigate(["/"]);
       }
     } else {
@@ -125,6 +155,7 @@ export class ButacasComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       let funcionId = Number.parseInt(params.get("id"));
+      this.funcion = this.dataService.getOption("funcion");
       this.mapaButacasServices.getMapaButaca(funcionId).subscribe(data => {
         this.mapaButaca = data[0];
         this.salaButacas.numColumnas = this.mapaButaca.cantidadColumnas;
@@ -132,7 +163,49 @@ export class ButacasComponent implements OnInit {
         this.salaButacas.tipoPasillo = this.mapaButaca.nombrePasillo;
         this.salaButacas.tipoEntrada = this.mapaButaca.nombreEntrada;
         this.salaButacas.tipoSalida = this.mapaButaca.nombreSalida;
+
+        if (this.salaButacas.tipoPasillo.length > 0) {
+          this.textoPasillos += " posee";
+
+          if (this.salaButacas.tipoPasillo.includes("C"))
+            this.textoPasillos += " un pasillo central";
+          if (this.salaButacas.tipoPasillo.includes("I"))
+            this.textoPasillos += " un pasillo izquierdo";
+          if (this.salaButacas.tipoPasillo.includes("D"))
+            this.textoPasillos += " un pasillo derecho";
+        } else {
+          this.textoPasillos += " no posee pasillos";
+        }
+
+        if (this.salaButacas.tipoEntrada.length > 0) {
+          this.textoEntradas += " posee";
+
+          if (this.salaButacas.tipoEntrada.includes("C"))
+            this.textoEntradas += " una entrada central";
+          if (this.salaButacas.tipoEntrada.includes("I"))
+            this.textoEntradas += " un entrada izquierdo";
+          if (this.salaButacas.tipoEntrada.includes("D"))
+            this.textoEntradas += " un entrada derecho";
+        } else {
+          this.textoEntradas += " no posee entradas";
+        }
+
+        if (this.salaButacas.tipoSalida.length > 0) {
+          this.textoSalidas += " posee";
+
+          if (this.salaButacas.tipoSalida.includes("C"))
+            this.textoSalidas += " una entrada central";
+          if (this.salaButacas.tipoSalida.includes("I"))
+            this.textoSalidas += " una  entrada izquierdo";
+          if (this.salaButacas.tipoSalida.includes("D"))
+            this.textoSalidas += " una salida derecha";
+        } else {
+          this.textoSalidas += " no posee salidas";
+        }
       });
+      this.salasService
+        .getButacasByFuncion(funcionId)
+        .subscribe(data => (this.salaButacas.butacas = data));
     });
     this.funcion = this.dataService.getOption("funcion");
   }

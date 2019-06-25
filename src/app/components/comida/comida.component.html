@@ -9,11 +9,13 @@
       alt="Card image cap"
     />
     <div class="card-body">
-      <h5 class="card-title">{{ combo.combo.nombre }}</h5>
+      <h5 class="card-title">{{ combo.comboNombre }}</h5>
       <div *ngFor="let comida of combo.comidas">
-        <p class="card-text">{{ comida.nombre }}: {{ comida.cantidad }}</p>
+        <p class="card-text">
+          {{ comida.comidaNombre }}: {{ comida.cantidad }}
+        </p>
       </div>
-      <a class="btn btn-primary comprar-btn" (click)="comprar()">Ordenar 1</a>
+      <a class="btn btn-primary comprar-btn" (click)="comprar()">Ordenar</a>
     </div>
   </div>
 </div>

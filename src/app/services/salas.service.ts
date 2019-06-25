@@ -7,6 +7,6 @@ export class SalasService {
   constructor(private http: HttpClient) {}
 
   getButacasByFuncion(idFuncion: number) {
-    this.http.get(`${this.ruta}/asientos/${idFuncion}`);
+    return this.http.get<any[]>(`${this.ruta}/asientos/${idFuncion}`);
   }
 }
