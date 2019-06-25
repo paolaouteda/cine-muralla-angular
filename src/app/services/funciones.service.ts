@@ -14,4 +14,7 @@ export class FuncionesService {
     return this.http.post(`${this.ruta}/crear`,funcion);
   }
 
+  comprar(data) {
+    return this.http.post(`${this.ruta}/comprar`, data);
+  }
 }

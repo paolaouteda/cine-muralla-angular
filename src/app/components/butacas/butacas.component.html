@@ -4,6 +4,17 @@
       <h4 class="title-component">BUTACAS</h4>
     </div>
     <div class="container">
+      <div class="col-md-12">
+        <h5>{{ textoPasillos }}</h5>
+      </div>
+      <div class="col-md-12">
+        <h5>{{ textoEntradas }}</h5>
+      </div>
+      <div class="col-md-12">
+        <h5>{{ textoSalidas }}</h5>
+      </div>
+    </div>
+    <div class="container">
       <div *ngIf="validarPasillo()">
         <div *ngFor="let f of filas()">
           <div class="row">
@@ -49,7 +60,7 @@
                 *ngIf="validateButaca(f, c)"
                 src="../../../assets/images/asientoComprado.png"
                 alt="asiento"
-                (click)="desreservarAsiento(f, c)"
+                (click)="reservarAsiento(f, c)"
                 height="42"
                 width="42"
               />

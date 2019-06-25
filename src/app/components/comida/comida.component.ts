@@ -1,36 +1,56 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { CombosService } from "src/app/services/combos.service";
+import { DataService } from "src/app/services/data.service";
+import { FuncionesService } from "src/app/services/funciones.service";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-comida',
-  templateUrl: './comida.component.html',
-  styleUrls: ['./comida.component.css']
+  selector: "app-comida",
+  templateUrl: "./comida.component.html",
+  styleUrls: ["./comida.component.css"]
 })
 export class ComidaComponent implements OnInit {
+  combos = [];
 
-  combos = [{
-    combo: {
-      id: 1,
-      nombre: 'combo de mentira'
-    },
-     comidas: [{ id: 1, categoria: 'chucheria', nombre: 'panqueca', cantidad: 2 },
-     { id: 2, categoria: 'dulce', nombre: 'torta', cantidad: 5 },
-    { id: 3, categoria: 'salado', nombre: 'mani', cantidad: 20 }]
-  }, {
-    combo: {
-      id: 2,
-      nombre: 'combo de mentira 2'
-    }, comidas: [{ id: 3, categoria: 'chucheria', nombre: 'doritos', cantidad: 10 },
-     { id: 4, categoria: 'dulce', nombre: 'pastel', cantidad: 99999 }]
-  }, {
-    combo: {
-      id: 3,
-      nombre: 'combo de mentira 3'
-    }, comidas: [{ id: 4, categoria: 'salado', nombre: 'Omar', cantidad: 999999999999999999999999999999999999999999999999999999999999999999999999999 }]
-  }];
-
-  constructor() { }
+  constructor(
+    private combosService: CombosService,
+    private dataService: DataService,
+    private funcionesService: FuncionesService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    this.combosService.getCombos().subscribe(data => {
+      this.combos = data;
+      let organizados = [];
+      this.combos.forEach(combo => {
+        if (organizados.some(org => org.comboNombre == combo.comboNombre))
+          organizados[
+            organizados.findIndex(org => org.comboNombre == combo.comboNombre)
+          ].comidas.push({
+            comidaNombre: combo.comidaNombre,
+            cantidad: combo.cantidadComida
+          });
+        else
+          organizados.push({
+            ...combo,
+            comidas: [
+              {
+                comidaNombre: combo.comidaNombre,
+                cantidad: combo.cantidadComida
+              }
+            ]
+          });
+      });
+
+      this.combos = organizados;
+    });
   }
 
+  comprar(idCombo: number) {
+    const compra = this.dataService.getOption("compra");
+    compra.idCombo = idCombo;
+    this.funcionesService.comprar(compra).subscribe(data => console.log(data));
+    this.router.navigate(["/"]);
+  }
 }

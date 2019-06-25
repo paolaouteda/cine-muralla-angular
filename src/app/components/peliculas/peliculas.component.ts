@@ -38,6 +38,6 @@ export class PeliculasComponent implements OnInit {
 
   reservar(funcion: any) {
     this.dataService.setOption("funcion", funcion);
-    this.router.navigate([`butacas/${funcion.pelicula.id}`]);
+    this.router.navigate([`butacas/${funcion.idFuncion}`]);
   }
 }

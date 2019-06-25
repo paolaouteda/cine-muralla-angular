@@ -20,6 +20,7 @@ import { MapaButacasServices } from "./services/mapas.services";
 import { PeliculasService } from "./services/peliculas.services";
 import { FormsModule } from '@angular/forms';
 import { SalasService } from './services/salas.service';
+import { CombosService } from "./services/combos.service";
 
 const appRoutes: Routes = [
   { path: "", component: DashboardComponent },
@@ -63,7 +64,9 @@ const appRoutes: Routes = [
     PeliculasService,
     CarteleraService,
     FuncionesService,
-    MapaButacasServices
+    MapaButacasServices,
+    CombosService,
+    SalasService
   ],
   bootstrap: [AppComponent]
 })

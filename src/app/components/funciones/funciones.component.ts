@@ -34,6 +34,7 @@ export class FuncionesComponent implements OnInit {
   }
 
   reservar(funcion: any) {
+    this.dataService.setOption("funcion", funcion);
     this.router.navigate([`butacas/${funcion.idFuncion}`]);
   }
 }
