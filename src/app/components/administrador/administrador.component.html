@@ -1,7 +1,54 @@
-<button type="button" class="btn btn-outline-primary">
+<button
+  type="button"
+  class="btn btn-outline-primary"
+  (click)="peliculaIsCollapsed = !peliculaIsCollapsed"
+  [attr.aria-expanded]="!peliculaIsCollapsed"
+  aria-controls="collapse1"
+>
   Crear Pelicula
 </button>
-
+<div id="collapse1" [ngbCollapse]="peliculaIsCollapsed">
+  <div class="card">
+    <div class="card-body">
+      <!-- peliculas form -->
+      <form action="/formAction.ts">
+        <div class="form-group">
+          <label for="titulo">Titulo:</label>
+          <input type="text" class="form-control" id="ubi" />
+        </div>
+        <div class="form-group">
+          <label for="duracion">Duracion:</label>
+          <input type="number" class="form-control" id="sede" />
+        </div>
+        <div class="form-group">
+          <label for="genero">Genero:</label>
+          <input type="text" class="form-control" id="ubi" />
+        </div>
+        <div class="form-group">
+          <label for="censura">Censura:</label>
+          <input type="text" class="form-control" id="ubi" />
+        </div>
+        <div class="form-group">
+          <label for="descripcion">Descripcion:</label>
+          <input type="text" class="form-control" id="ubi" />
+        </div>
+        <div class="form-group">
+          <label for="imaVertical">Imagen Vertical:</label>
+          <input type="text" class="form-control" id="ubi" />
+        </div>
+        <div class="form-group">
+          <label for="imaHorizontal">Imagen Horizontal:</label>
+          <input type="text" class="form-control" id="ubi" />
+        </div>
+        <div class="form-group">
+          <label for="estreno">Fecha Estreno: </label><br />
+          <input type="date" class="form-control" class="hora" />
+        </div>
+        <button type="submit" class="btn btn-primary">Crear Pelicula</button>
+      </form>
+    </div>
+  </div>
+</div>
 <!-- TODO: Agregar cualquier validacion xdxd -->
 <button
   type="button"
