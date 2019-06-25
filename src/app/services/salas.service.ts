@@ -9,4 +9,8 @@ export class SalasService {
   getButacasByFuncion(idFuncion: number) {
     return this.http.get<any[]>(`${this.ruta}/asientos/${idFuncion}`);
   }
+
+  reservar(butaca) {
+    return this.http.put(`${this.ruta}/reservar/${butaca.idFuncion}`, butaca);
+  }
 }

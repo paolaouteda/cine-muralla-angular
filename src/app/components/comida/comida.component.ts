@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { CombosService } from "src/app/services/combos.service";
+import { DataService } from "src/app/services/data.service";
+import { FuncionesService } from "src/app/services/funciones.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-comida",
@@ -9,7 +12,12 @@ import { CombosService } from "src/app/services/combos.service";
 export class ComidaComponent implements OnInit {
   combos = [];
 
-  constructor(private combosService: CombosService) {}
+  constructor(
+    private combosService: CombosService,
+    private dataService: DataService,
+    private funcionesService: FuncionesService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.combosService.getCombos().subscribe(data => {
@@ -36,7 +44,13 @@ export class ComidaComponent implements OnInit {
       });
 
       this.combos = organizados;
-      console.log(this.combos);
     });
+  }
+
+  comprar(idCombo: number) {
+    const compra = this.dataService.getOption("compra");
+    compra.idCombo = idCombo;
+    this.funcionesService.comprar(compra).subscribe(data => console.log(data));
+    this.router.navigate(["/"]);
   }
 }

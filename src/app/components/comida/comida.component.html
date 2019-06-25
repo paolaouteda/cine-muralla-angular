@@ -15,7 +15,9 @@
           {{ comida.comidaNombre }}: {{ comida.cantidad }}
         </p>
       </div>
-      <a class="btn btn-primary comprar-btn" (click)="comprar()">Ordenar</a>
+      <a class="btn btn-primary comprar-btn" (click)="comprar(combo.idCombo)"
+        >Ordenar</a
+      >
     </div>
   </div>
 </div>

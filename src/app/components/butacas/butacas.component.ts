@@ -138,6 +138,17 @@ export class ButacasComponent implements OnInit {
         idFuncion: this.funcion.idFuncion,
         asientos: this.butacasCompradas.length
       };
+
+      this.butacasCompradas.map(butaca => {
+        const butacaComprada = {
+          idSala: this.funcion.idSala,
+          columna: butaca.columna,
+          fila: butaca.fila,
+          idFuncion: this.funcion.idFuncion
+        };
+        this.salasService.reservar(butacaComprada).subscribe();
+      });
+
       if (comprarComida) {
         this.dataService.setOption("compra", compra);
         this.router.navigate(["/comida"]);
@@ -183,9 +194,9 @@ export class ButacasComponent implements OnInit {
           if (this.salaButacas.tipoEntrada.includes("C"))
             this.textoEntradas += " una entrada central";
           if (this.salaButacas.tipoEntrada.includes("I"))
-            this.textoEntradas += " un entrada izquierdo";
+            this.textoEntradas += " una entrada izquierda";
           if (this.salaButacas.tipoEntrada.includes("D"))
-            this.textoEntradas += " un entrada derecho";
+            this.textoEntradas += " una entrada derecha";
         } else {
           this.textoEntradas += " no posee entradas";
         }
@@ -194,9 +205,9 @@ export class ButacasComponent implements OnInit {
           this.textoSalidas += " posee";
 
           if (this.salaButacas.tipoSalida.includes("C"))
-            this.textoSalidas += " una entrada central";
+            this.textoSalidas += " una salida central";
           if (this.salaButacas.tipoSalida.includes("I"))
-            this.textoSalidas += " una  entrada izquierdo";
+            this.textoSalidas += " una  salida izquierda";
           if (this.salaButacas.tipoSalida.includes("D"))
             this.textoSalidas += " una salida derecha";
         } else {
