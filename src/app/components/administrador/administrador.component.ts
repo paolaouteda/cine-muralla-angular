@@ -86,6 +86,7 @@ export class AdministradorComponent implements OnInit {
       horarioInicio: this.funcFechaInicio,
       horarioFin: this.funcFechaFinal ,
       idIdioma: this.idioma,
+      idSubtitulo: this.subtitulo,
       idSala: this.sala,
       idPelicula: this.pelicula
     }
